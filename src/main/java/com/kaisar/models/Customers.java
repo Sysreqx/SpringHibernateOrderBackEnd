@@ -1,6 +1,14 @@
 package com.kaisar.models;
 
+import jdk.jfr.Name;
+import org.springframework.stereotype.Controller;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customers {
+    @Id
     private int customerId;
     private String customerName;
     private String customerAddress;
@@ -14,6 +22,14 @@ public class Customers {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerContact = customerContact;
+    }
+
+    public Customers() {
+
+    }
+
+    public Customers(String customerName) {
+        this.customerName = customerName;
     }
 
     public int getCustomerId() {
