@@ -30,6 +30,9 @@ public class Main {
             Connection connection = DriverManager.getConnection(url, user, password);
 
             Statement statement = connection.createStatement();
+
+            statement.execute("UPDATE Customers SET cust_name='The Toy Store JDBC' WHERE cust_id = 1000000006");
+
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Customers");
             while (resultSet.next()) {
                 String courseName = resultSet.getString("cust_name");
