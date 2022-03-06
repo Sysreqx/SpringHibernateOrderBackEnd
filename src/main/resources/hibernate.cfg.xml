@@ -15,7 +15,7 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://localhost/sqlstart
+            jdbc:mysql://localhost:3306/sqlstart
         </property>
 
         <property name = "hibernate.connection.username">
@@ -28,7 +28,7 @@
 
         <!-- List of XML mapping files -->
         <!--        <mapping resource = "Employee.hbm.xml"/>-->
-        <mapping class="com.kaisar.models.Customers"></mapping>
+        <mapping class="com.kaisar.models.Customers" />
 
     </session-factory>
 </hibernate-configuration>

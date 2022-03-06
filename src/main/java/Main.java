@@ -5,15 +5,43 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class Main {
-    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-    SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    Session session = sessionFactory.openSession();
+import javax.xml.transform.Result;
+import java.sql.*;
 
-    {
-        session.beginTransaction();
-        Customers c = new Customers(1000000006, "The Toy Store HIBERNATE", "Chicaco 3rd Street", "+77718553555");
-        session.save(c);
-        session.getTransaction().commit();
+public class Main {
+
+    public static void main(String[] args) throws SQLException {
+//        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+//
+//        try (SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+//             Session session = sessionFactory.openSession()) {
+//
+//            session.beginTransaction();
+//            Customers c = new Customers(1000000008, "The Toy Store HIBERNATE", "Chicaco 3rd Street", "+77718553555");
+//            session.save(c);
+//            session.getTransaction().commit();
+//
+//            if (session != null) session.close();
+//        }
+        String url = "jdbc:mysql://localhost:3306/sqlstart";
+        String user = "root";
+        String password = "root";
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Customers");
+            while (resultSet.next()) {
+                String courseName = resultSet.getString("cust_name");
+                System.out.println(courseName);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

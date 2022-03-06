@@ -1,8 +1,8 @@
 package com.kaisar.models;
 
-import jdk.jfr.Name;
 import org.springframework.stereotype.Controller;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
